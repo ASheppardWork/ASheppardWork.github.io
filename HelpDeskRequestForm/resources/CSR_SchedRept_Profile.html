@@ -1,0 +1,140 @@
+<table id="SCHDRPT_CSR_table" class="table">
+    <thead></thead>
+    <tbody>
+
+        <tr id="SCHDRPT_HeaderRow">
+            <th><label for="SCHDRPT_name">Report:</label></th>
+            <th><label for="SCHDRPT_Frequency">Frequency:</label></th>
+            <th><label for="SCHDRPT_format">Format:</label></th>
+            <th><label for="SCHDRPT_Delivery">Delivery Method:</label></th>
+        </tr>
+
+        <!---
+        //setup CSR default reports profile
+        /*
+        CSR Default Reports:
+        Shipped Not Billed
+        Shipped Not Billed > 30
+        Open Orders
+        Allocated Not Shipped
+        */
+        /*
+        frequency values:
+        1-Daily, 2-Monthly, 3-Quarterly, 4-Yearly
+        format values:
+        1-Excel, 2-PDF
+        delivery method values:
+        1-mf_download, 2-email
+
+        */
+        --->
+
+
+        <tr id="SCHDRPT_CSR_1">
+            <td>
+                <input id="SCHDRPT_DEF_name" name="SCHDRPT_DEF_name" class="form-control" value="Shipped Not Billed" disabled>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Frequency" name="SCHDRPT_DEF_Frequency" class="form-control" disabled>
+                    <option selected="selected" value="1">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_format" name="SCHDRPT_DEF_format" class="form-control"  disabled>
+                    <option selected="selected"  value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Delivery" name="SCHDRPT_DEF_Delivery" class="form-control"  disabled>
+                    <option value="1">mf_download</option>
+                    <option selected="selected" value="2">email</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="SCHDRPT_CSR_2">
+            <td>
+                <input id="SCHDRPT_DEF_name" name="SCHDRPT_DEF_name" class="form-control" value="Shipped Not Billed > 30" disabled>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Frequency" name="SCHDRPT_DEF_Frequency" class="form-control" disabled>
+                    <option selected="selected" value="1">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_format" name="SCHDRPT_DEF_format" class="form-control"  disabled>
+                    <option selected="selected"  value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Delivery" name="SCHDRPT_DEF_Delivery" class="form-control"  disabled>
+                    <option value="1">mf_download</option>
+                    <option selected="selected" value="2">email</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="SCHDRPT_CSR_3">
+            <td>
+                <input id="SCHDRPT_DEF_name" name="SCHDRPT_DEF_name" class="form-control" value="Open Orders" disabled>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Frequency" name="SCHDRPT_DEF_Frequency" class="form-control" disabled>
+                    <option selected="selected" value="1">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_format" name="SCHDRPT_DEF_format" class="form-control"  disabled>
+                    <option selected="selected"  value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Delivery" name="SCHDRPT_DEF_Delivery" class="form-control"  disabled>
+                    <option value="1">mf_download</option>
+                    <option selected="selected" value="2">email</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="SCHDRPT_CSR_4">
+            <td>
+                <input id="SCHDRPT_DEF_name" name="SCHDRPT_DEF_name" class="form-control" value="Allocated Not Shipped" disabled>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Frequency" name="SCHDRPT_DEF_Frequency" class="form-control" disabled>
+                    <option selected="selected" value="1">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_format" name="SCHDRPT_DEF_format" class="form-control"  disabled>
+                    <option selected="selected"  value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Delivery" name="SCHDRPT_DEF_Delivery" class="form-control"  disabled>
+                    <option value="1">mf_download</option>
+                    <option selected="selected" value="2">email</option>
+                </select>
+            </td>
+        </tr>
+
+
+    </tbody>
+    <tfoot></tfoot>
+</table>

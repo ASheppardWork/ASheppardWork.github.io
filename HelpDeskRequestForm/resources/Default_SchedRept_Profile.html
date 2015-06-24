@@ -1,0 +1,39 @@
+<table id="SCHDRPT_table" class="table">
+    <thead>-- There are no default reports for this job title --</thead>
+    <tbody>
+
+        <tr id="SCHDRPT_HeaderRow">
+            <th><label for="SCHDRPT_name">Report:</label></th>
+            <th><label for="SCHDRPT_Frequency">Frequency:</label></th>
+            <th><label for="SCHDRPT_format">Format:</label></th>
+            <th><label for="SCHDRPT_Delivery">Delivery Method:</label></th>
+        </tr>
+        <tr id="SCHDRPT_1">
+            <td>
+                <input id="SCHDRPT_DEF_name" name="SCHDRPT_DEF_name" class="form-control" disabled>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Frequency" name="SCHDRPT_DEF_Frequency" class="form-control" disabled>
+                    <option value="1">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="3">Quarterly</option>
+                    <option value="4">Yearly</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_format" name="SCHDRPT_DEF_format" class="form-control" disabled>
+                    <option value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </td>
+            <td>
+                <select id="SCHDRPT_DEF_Delivery_'+i+'" name="SCHDRPT_DEF_Delivery_'+i+'" class="form-control" disabled>
+                    <option value="1">mf_download</option>
+                    <option value="2">email</option>
+                </select>
+            </td>
+        </tr>
+
+    </tbody>
+    <tfoot></tfoot>
+</table>

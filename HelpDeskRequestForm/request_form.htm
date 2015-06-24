@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--- use IE 9 if not available use compatibility mode --->
+    <meta http-equiv="x-ua-compatible" content="IE=9">
+
+
+    <!--- hide output only and debugger for CF--->
+    <cfsetting enablecfoutputonly="no" showdebugoutput="no">
+
+    <!--- set scale and charset --->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+    <!---Normalize.css is what allows the form to be seen formatted as it was in Chrome only for IE9 --->
+    <!--- local/edited resource files --->
+    <LINK REL="stylesheet" HREF="css/normalize.css">
+
+
+    <!--- DataTables CSS files --->
+    <LINK REL=stylesheet TYPE="text/css" HREF="css/demo_table_jui.css" media="all">
+    <LINK REL="stylesheet" TYPE="text/css" HREF="common/scripts/dataTable/overcast/jquery-ui-1.8.6.custom.css" media="all">
+
+    <!--- BootStrap --->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+
+
+
+
+    <!--- shared resource files
+    <script type="text/javascript" src="/common/scripts/jquery1.8.3.js"></script>  --->
+
+    <!--- the version of dataTables is 1.9.0 and the version of columnFilter is 1.5.6
+
+    !!!! CAUTION: IF YOU CHANGE THE VERSIONS OF DATATABLES TO 1.10 YOU MUST CHANGE THE
+        SYNTAX FOR HIDING COLUMNS OR INSERTING THE "EDIT" LINKS  - ALSO ALL THE OTHER SETTINGS
+        IN THE DATATABLES API SECTION WILL HAVE TO BE REVIEWED  !!!! -AS 5/9/14
+                                                                                        --->
+    <script type="text/javascript" src="common/scripts/jquery.dataTables.columnfilter.js"></script>
+    <script type="text/javascript" src="common/scripts/jquery.dataTables.js"></script>
+
+
+
+<!---<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel='stylesheet' type='text/css'>--->
+    <!--- DW_Request_Form style    --->
+    <link rel="stylesheet" href="css/dwReqFormstyle.css">
+
+</head>
+<body>
+
+<!--- START theBody --->
+<div id="theBody" style="display: block;">
+
+    <div id="theMain-Form" class="container">
+        <form id ="main-content" class="form-horizontal" style="display: block;">
+        <fieldset>
+
+        <!-- Form Name -->
+        <legend>Data Warehouse Request</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="FirstName">First Name*</label>
+          <div class="col-md-4">
+          <input id="FirstName" name="FirstName" type="text" placeholder="John" class="form-control input-md" required>
+          <p id="firstNameWarning" class="text-danger" style="display:none">Please enter a First name.</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="LastName">Last Name*</label>
+          <div class="col-md-4">
+          <input id="LastName" name="LastName" type="text" placeholder="Doe" class="form-control input-md" required>
+          <p id="lastNameWarning" class="text-danger" style="display:none">Please enter a Last name.</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Email">Email*</label>
+          <div class="col-md-4">
+          <input id="Email" name="Email" type="email" placeholder="john.doe@webmail.com" class="form-control input-md" required>
+          <p id="emailWarning" class="text-danger" style="display:none">Please enter a valid email.</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="UserPhone">Phone Number*</label>
+          <div class="col-md-4">
+          <input id="UserPhone" name="UserPhone" type="text" placeholder="+1-555-555-5555" class="form-control input-md" required>
+          <span class="help-block">-user phone number</span>
+          <p id="phoneWarning" class="text-danger" style="display:none">Please give a Phone Number with area code i.e. 505-111-5555 </p>
+          </div>
+        </div>
+
+
+
+
+        <!--- select job title out of control list to trigger modals for more capture options --->
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="UserJobTitle">Select Job Title*</label>
+          <div class="col-md-4">
+            <select id="UserJobTitle" name="UserJobTitle" class="form-control" required>
+              <option value="-">-</option>
+              <option value="ISR">Inside Sales Rep.</option>
+              <option value="OSR">Outside Sales Rep.</option>
+              <option value="CSR">Counter Sales Rep.</option>
+              <option value="SLSSPRT">Sales Support Spc.</option>
+              <option value="BRADMN">Branch Admin.</option>
+              <option value="ABMGR">Asst. Branch Mgr.</option>
+              <option value="BMGR">Branch Mgr.</option>
+              <option value="RM">Regional Mgr.</option>
+              <option value="VP">VP</option>
+              <option value="SVP">SVP</option>
+              <option value="OTHER">Other</option>
+
+            </select>
+          </div>
+          <p id="jobTitleWarning" class="text-danger" style="display:none">You MUST select a job title, if you don't see yours, use 'Other' </p>
+
+        </div>
+
+
+
+          <!--ISR Modal -->
+          <div class="modal fade" id="ISR_Modal" tabindex="-1" role="dialog" aria-labelledby="ISR_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Inside Sales Rep Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>ISR Questions:</p>
+
+                    <div>
+                        <form name="ISR_Form" id="ISR_Form">
+                            <label>ISR Number:</label>
+                            <input id="ISR_Number" name="ISR_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+                            <p id="ISR_Number_Warning" class="text-danger" style="display:none">Please enter a ISR number </p>
+
+                            <label>Manager:</label>
+                            <input id="ISR_ManagerName" name="ISR_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+                            <p id="ISR_ManagerName_Warning" class="text-danger" style="display:none">Please enter a Manager First and Last Name </p>
+
+                            <label>Branch No.:</label>
+                            <input id="ISR_Branch" name="ISR_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+                            <p id="ISR_Branch_Warning" class="text-danger" style="display:none">Please enter your Branch Location Code </p>
+
+                            <label>Approving Regional VP</label>
+                            <input id="ISR_Approver" name="ISR_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+                            <p id="ISR_Approver_Warning" class="text-danger" style="display:none">Please enter your SVP name </p>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="ISR_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="ISR_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+          <!--OSR Modal -->
+          <div class="modal fade" id="OSR_Modal" tabindex="-1" role="dialog" aria-labelledby="OSR_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Outside Sales Rep Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>OSR Questions:</p>
+
+                    <div>
+                        <form id="OSR_Form">
+                            <label>OSR Number:</label>
+                            <input id="OSR_Number" name="OSR_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="OSR_ManagerName" name="OSR_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="OSR_Branch" name="OSR_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="OSR_Approver" name="OSR_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="OSR_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="OSR_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+
+          <!--CSR Modal -->
+          <div class="modal fade" id="CSR_Modal" tabindex="-1" role="dialog" aria-labelledby="CSR_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Counter Sales Rep Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>CSR Questions:</p>
+
+                    <div>
+                        <form id="CSR_Form">
+                            <label>CSR Number:</label>
+                            <input id="CSR_Number" name="CSR_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="CSR_ManagerName" name="CSR_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="CSR_Branch" name="CSR_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="CSR_Approver" name="CSR_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="CSR_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="CSR_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+          <!--Sales Support Specialist Modal -->
+          <div class="modal fade" id="SLSSPRT_Modal" tabindex="-1" role="dialog" aria-labelledby="SLSSPRT_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Sales Support Specialist Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Sales Support Specialist Questions:</p>
+
+                    <div>
+                        <form id="SLSSPRT_Form">
+                            <label>Sales Support Specialist Number:</label>
+                            <input id="SLSSPRT_Number" name="SLSSPRT_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="SLSSPRT_ManagerName" name="SLSSPRT_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="SLSSPRT_Branch" name="SLSSPRT_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="SLSSPRT_Approver" name="SLSSPRT_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="SLSSPRT_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="SLSSPRT_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+           <!--Branch Admin. Modal -->
+          <div class="modal fade" id="BRADMN_Modal" tabindex="-1" role="dialog" aria-labelledby="BRADMN_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Branch Admin. Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Branch Admin. Questions:</p>
+
+                    <div>
+                        <form id="BRADMN_Form">
+                            <label>Branch Admin. Number:</label>
+                            <input id="BRADMN_Number" name="BRADMN_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="BRADMN_ManagerName" name="BRADMN_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="BRADMN_Branch" name="BRADMN_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="BRADMN_Approver" name="BRADMN_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="BRADMN_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="BRADMN_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+          <!--Asst. Branch Mgr. Modal -->
+          <div class="modal fade" id="ABMGR_Modal" tabindex="-1" role="dialog" aria-labelledby="ABMGR_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Asst. Branch Mgr. Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Asst. Branch Mgr. Questions:</p>
+
+                    <div>
+                        <form id="ABMGR_Form">
+                            <label>Asst. Branch Mgr. Number:</label>
+                            <input id="ABMGR_Number" name="ABMGR_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="ABMGR_ManagerName" name="ABMGR_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="ABMGR_Branch" name="ABMGR_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="ABMGR_Approver" name="ABMGR_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="ABMGR_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="ABMGR_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+          <!--Branch Mgr. Modal -->
+          <div class="modal fade" id="BMGR_Modal" tabindex="-1" role="dialog" aria-labelledby="BMGR_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title"> Branch Mgr. Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p> Branch Mgr. Questions:</p>
+
+                    <div>
+                        <form id="BMGR_Form">
+                            <label> Branch Mgr. Number:</label>
+                            <input id="BMGR_Number" name="BMGR_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="BMGR_ManagerName" name="BMGR_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="BMGR_Branch" name="BMGR_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="BMGR_Approver" name="BMGR_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="BMGR_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="BMGR_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+         <!--Regional Mgr. Modal -->
+          <div class="modal fade" id="RM_Modal" tabindex="-1" role="dialog" aria-labelledby="RM_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Regional Mgr. Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Regional Mgr. Questions:</p>
+
+                    <div>
+                        <form id="RM_Form">
+                            <label>Regional Mgr. Number:</label>
+                            <input id="RM_Number" name="RM_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="RM_ManagerName" name="RM_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="RM_Branch" name="RM_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="RM_Approver" name="RM_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="RM_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="RM_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+         <!--VP Modal -->
+          <div class="modal fade" id="VP_Modal" tabindex="-1" role="dialog" aria-labelledby="VP_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">VP Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>VP Questions:</p>
+
+                    <div>
+                        <form id="VP_Form">
+                            <label>VP Number:</label>
+                            <input id="VP_Number" name="VP_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="VP_ManagerName" name="VP_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="VP_Branch" name="VP_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="VP_Approver" name="VP_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="VP_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="VP_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+         <!--SVP Modal -->
+          <div class="modal fade" id="SVP_Modal" tabindex="-1" role="dialog" aria-labelledby="SVP_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">SVP Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>SVP Questions:</p>
+
+                    <div>
+                        <form id="SVP_Form">
+                            <label>SVP Number:</label>
+                            <input id="SVP_Number" name="SVP_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="SVP_ManagerName" name="SVP_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="SVP_Branch" name="SVP_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="SVP_Approver" name="SVP_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="SVP_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="SVP_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+         <!--Other Modal -->
+          <div class="modal fade" id="OTHER_Modal" tabindex="-1" role="dialog" aria-labelledby="OTHER_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                  <h4 class="modal-title">Employee DW Access Form</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Employee DW Access Questions:</p>
+
+                    <div>
+                        <form id="OTHER_Form">
+                            <label>Employee Number:</label>
+                            <input id="OTHER_Number" name="OTHER_Number" placeholder="412" value="" type="text" class="form-control input-md" >
+                            <span class="help-block"></span>
+
+                            <label>Manager:</label>
+                            <input id="OTHER_ManagerName" name="OTHER_ManagerName" placeholder="Jane.Doe" type="text" class="form-control input-md" >
+                            <span class="help-block">please use firstname.lastname</span>
+
+                            <label>Branch No.:</label>
+                            <input id="OTHER_Branch" name="OTHER_Branch" placeholder="Z99" type="text" class="form-control input-md" >
+                            <span class="help-block">User 3 Digit branch location</span>
+
+                            <label>Approving Regional VP</label>
+                            <input id="OTHER_Approver" name="OTHER_Approver" placeholder="John.Smith" type="text" class="form-control input-md">
+                            <span class="help-block"></span>
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="OTHER_close" >Close</button>
+                  <button type="button" class="btn btn-primary" id="OTHER_save">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="ServicesRequested">Check Services Requested*</label>
+          <div class="col-md-4">
+          <div class="checkbox">
+            <label for="ServicesRequested-1">
+              <input type="checkbox" name="ServicesRequested" id="ServicesRequested-1" value="2">
+              User Access
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="ServicesRequested-0">
+              <input type="checkbox" name="ServicesRequested" id="ServicesRequested-0" value="1">
+              Scheduled Report
+            </label>
+            </div>
+          <div class="checkbox">
+            <label for="ServicesRequested-2">
+              <input type="checkbox" name="ServicesRequested" id="ServicesRequested-2" value="3">
+              Dashboards
+            </label>
+            </div>
+          <div class="checkbox">
+            <label for="ServicesRequested-3">
+              <input type="checkbox" name="ServicesRequested" id="ServicesRequested-3" value="4">
+              Usage Report
+            </label>
+            </div>
+          </div>
+          <p id="servicesWarning" class="text-danger" style="display:none">Please select at least 1 service </p>
+        </div>
+
+
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="btnSuccess"></label>
+          <div class="col-md-8">
+            <button id="btnNext" name="btnNext" class="btn btn-success" onclick="showServices();">Next</button>
+            <!--- <button id="btnCancel-main" name="btnCancel-main" class="btn btn-danger" >Cancel</button>   --->
+            <button id="btnCancel-main" name="btnCancel-main" class="btn btn-danger" onClick="window.location.reload()">Cancel</button>
+          </div>
+        </div>
+
+
+        <div>*- required fields</div>
+        </fieldset>
+        </form>
+
+
+
+
+    </div>
+
+
+    <!--- start Service-Forms-Main --->
+
+    <div id="Service-Forms-Main" style="display:none;" class="container" >
+
+        <div id="backToMain" style="display:none;" >
+            <a href="javascript:void(null)" onclick="backToMain()">Back To Main</a>
+        </div>
+
+        <!--- User Access form activated by:  document.getElementById('ServicesRequested-1').checked --->
+            <form id="USERACC_Form" style="display:none;" class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>User Access</legend>
+
+                <!-- Multiple Checkboxes -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USERACC_Options">Access Options</label>
+                  <div class="col-md-4">
+                  <div class="checkbox">
+                    <label for="USERACC_Options-0">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-0" value="1">
+                      Razor
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="USERACC_Options-1">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-1" value="2">
+                      iRazor
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="USERACC_Options-2">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-2" value="3">
+                      oRazor
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="USERACC_Options-3">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-3" value="4">
+                      Purchase Orders
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="USERACC_Options-4">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-4" value="5">
+                      Sales
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="USERACC_Options-5">
+                      <input type="checkbox" name="USERACC_Options" id="USERACC_Options-5" value="6">
+                      Other
+                    </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USERACC_Filters_txt">Additional Filters:</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="USERACC_Filters_txt" name="USERACC_Filters_txt" rows="6">please enter extra filters here, e.g. customer: 012345; region: EASTERN; etc.</textarea>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USERACC_spclinstruct">Special Instructions</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="USERACC_spclinstruct" name="USERACC_spclinstruct" rows="6">-use this area to give any additional instructions/information </textarea>
+                  </div>
+                </div>
+
+                </fieldset>
+                </form>
+        <!--- END User Access form --->
+
+
+        <!--- scheduled report form  activated by:  document.getElementById('ServicesRequested-0').checked --->
+           <form id="SCHDRPT_Form" style="display:none;" class="form-horizontal">
+            <fieldset>
+
+            <!-- Form Name -->
+            <legend class="Service-Section-Border" >Scheduled Report</legend>
+            <div>&nbsp;</div>
+
+            <div id="SCHDRPT_profiles" class="table-responsive" style="display:block;">
+              <!--- loaded by jquery .load() in dw_def_reports.js - profile html is from resources/ folder  --->
+            </div>
+
+            <div id="SCHDRPT_addtnl_reports" class="table-responsive" style="display:block;">
+              <table id="SCHDRPT_addtnl_table" class="table">
+                    <thead></thead>
+                    <tbody>
+                        <tr id="SCHDRPT_HeaderRow">
+                            <th><label for="SCHDRPT_name">Report:</label></th>
+                            <th><label for="SCHDRPT_Frequency">Frequency:</label></th>
+                            <th><label for="SCHDRPT_format">Format:</label></th>
+                            <th><label for="SCHDRPT_Delivery">Delivery Method:</label></th>
+                        </tr>
+                        <!--- NOTE:
+                            Bootstrap HAS to use the class "hidden" to show/hide elements within a form
+                            if you use display:none; the labels will not align after the display is changed to block
+                            addScheduledReports() does the work here.
+
+                            $("#SCHDRPT_addtnl_"+c).removeClass('hidden');
+
+                            --->
+                        <tr id="SCHDRPT_addtnl_1" class="hidden" >
+                            <td>
+                                <input id="SCHDRPT_name" name="SCHDRPT_name" class="form-control" >
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Frequency" name="SCHDRPT_Frequency" class="form-control">
+                                    <option value="1">Daily</option>
+                                    <option value="2">Monthly</option>
+                                    <option value="3">Quarterly</option>
+                                    <option value="4">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_format" name="SCHDRPT_format" class="form-control">
+                                    <option value="1">Excel</option>
+                                    <option value="2">PDF</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Delivery" name="SCHDRPT_Delivery" class="form-control">
+                                    <option value="1">mf_download</option>
+                                    <option value="2">email</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="SCHDRPT_addtnl_2" class="hidden" >
+                            <td>
+                                <input id="SCHDRPT_name" name="SCHDRPT_name" class="form-control" >
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Frequency" name="SCHDRPT_Frequency" class="form-control">
+                                    <option selected="selected" value="1">Daily</option>
+                                    <option value="2">Monthly</option>
+                                    <option value="3">Quarterly</option>
+                                    <option value="4">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_format" name="SCHDRPT_format" class="form-control">
+                                    <option selected="selected"  value="1">Excel</option>
+                                    <option value="2">PDF</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Delivery" name="SCHDRPT_Delivery" class="form-control">
+                                    <option value="1">mf_download</option>
+                                    <option selected="selected" value="2">email</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="SCHDRPT_addtnl_3" class="hidden" >
+                            <td>
+                                <input id="SCHDRPT_name" name="SCHDRPT_name" class="form-control" >
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Frequency" name="SCHDRPT_Frequency" class="form-control">
+                                    <option selected="selected" value="1">Daily</option>
+                                    <option value="2">Monthly</option>
+                                    <option value="3">Quarterly</option>
+                                    <option value="4">Yearly</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_format" name="SCHDRPT_format" class="form-control">
+                                    <option selected="selected"  value="1">Excel</option>
+                                    <option value="2">PDF</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="SCHDRPT_Delivery" name="SCHDRPT_Delivery" class="form-control">
+                                    <option value="1">mf_download</option>
+                                    <option selected="selected" value="2">email</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+
+                    <!-- Add reports Button -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="btnAddRept"></label>
+                      <div class="col-md-8">
+                        <button id="btnAddRept" name="btnAddRept" class="btn btn-primary btn-xs" onclick="addScheduledReports();" >Add Report</button>
+                      </div>
+                    </div>
+
+
+            </div>
+
+            <!-- Textarea -->
+            <div>&nbsp;</div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="SCHDRPT_spclinstruct">Special Instructions</label>
+              <div class="col-md-4">
+                <textarea class="form-control" rows="6" id="SCHDRPT_spclinstruct" name="SCHDRPT_spclinstruct">-use this area to give any additional instructions/information </textarea>
+              </div>
+            </div>
+
+            </fieldset>
+           </form>
+        <!--- END Schedule Report form --->
+
+
+
+        <!--- START Dashboard Access form activated by:  document.getElementById('ServicesRequested-2').checked--->
+
+                <form id="DASHACC_Form" style="display:none;" class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>Dashboard Access</legend>
+
+                <!-- Multiple Checkboxes -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="DASHACC_dOptions">Dashboard Options</label>
+                  <div class="col-md-4">
+                  <div class="checkbox">
+                    <label for="DASHACC_Options-0">
+                      <input type="checkbox" name="DASHACC_Options" id="DASHACC_Options-0" value="1">
+                      Branch Mgr.
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="DASHACC_Options-1">
+                      <input type="checkbox" name="DASHACC_Options" id="DASHACC_Options-1" value="2">
+                      Regional Mgr.
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="DASHACC_Options-2">
+                      <input type="checkbox" name="DASHACC_Options" id="DASHACC_Options-2" value="3">
+                      ISR
+                    </label>
+                    </div>
+                  <div class="checkbox">
+                    <label for="DASHACC_Options-3">
+                      <input type="checkbox" name="DASHACC_Options" id="DASHACC_Options-3" value="4">
+                      Other
+                    </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="DASHACC_Filters_txt">Additional Filters:</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="DASHACC_Filters_txt" name="DASHACC_Filters_txt" rows="6">please enter extra filters here, e.g. Selling Branch; ISR Number; Selling Region; Customer Number</textarea>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="DASHACC_spclinstruct">Special Instructions</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="DASHACC_spclinstruct" name="DASHACC_spclinstruct"rows="6">-use this area to give any additional instructions/information </textarea>
+                  </div>
+                </div>
+
+
+                </fieldset>
+                </form>
+        <!--- END Dashboard Access form --->
+
+        <!--- START Usage Report form activated by:  document.getElementById('ServicesRequested-3').checked --->
+                <form id="USAGREPT_Form" style="display:none;" class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>Usage Report Request</legend>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_srcsys">Source System:</label>
+                  <div class="col-md-4">
+                    <select id="USAGREPT_srcsys" name="USAG_srcsys" class="form-control" multiple="multiple">
+                      <option value="1">SIMS-US</option>
+                      <option value="2">SIMS-CA</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_type">Type:</label>
+                  <div class="col-md-4">
+                    <select id="USAGREPT_type" name="USAG_type" class="form-control" multiple="multiple">
+                      <option value="1">Stock</option>
+                      <option value="2">Buyout</option>
+                      <option value="3">Direct</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_AcctDateStart">Accounting Date From:</label>
+                  <div class="col-md-4">
+                  <input id="USAGREPT_AcctDateStart" name="USAGREPT_AcctDateStart" type="text" placeholder="01/01/2100" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_AcctDateEnd">Accounting Date To:</label>
+                  <div class="col-md-4">
+                  <input id="USAGREPT_AcctDateEnd" name="USAGREPT_AcctDateEnd" type="text" placeholder="01/30/2100" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_ShipDateStart">Shipping Date From:</label>
+                  <div class="col-md-4">
+                  <input id="USAGREPT_ShipDateStart" name="USAGREPT_ShipDateStart" type="text" placeholder="01/01/2100" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Search input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_ShipDateEnd">Shipping Date To:</label>
+                  <div class="col-md-4">
+                    <input id="USAGREPT_ShipDateEnd" name="USAGREPT_ShipDateEnd" type="search" placeholder="01/30/2100" class="form-control input-md">
+
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_Email">Email To:</label>
+                  <div class="col-md-4">
+                  <input id="USAGREPT_Email" name="USAGREPT_Email" type="text" placeholder="jane.doe@website.com" class="form-control input-md">
+                  <span class="help-block">(Seperate w/ semicolons)</span>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_Filters_txt">Additional Filters:</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="USAGREPT_Filters_txt" name="USAGREPT_Filters_txt" rows="6">Each request MUST have filters.  Please enter the filters you want applied e.g.; Customer Number: A797; Branch Number: 999; etc.</textarea>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="USAGREPT_spclinstruct">Special Instructions</label>
+                  <div class="col-md-4">
+                    <textarea class="form-control" id="USAGREPT_spclinstruct" name="USAGREPT_spclinstruct" rows="6">-use this area to give any additional instructions/information </textarea>
+                  </div>
+                </div>
+
+                </fieldset>
+                </form>
+        <!--- END Usage Report form --->
+
+
+
+
+    </div>
+    <!--- END Service-Forms-Main --->
+
+</div>
+<!--- END theBody --->
+
+<!-- approval of services --->
+
+    <!-- Button (Double) -->
+    <div id="Submit_Svc" class="form-group" style="display:none">
+      <label class="col-md-4 control-label" for="btnSubmitSVC"></label>
+      <div class="col-md-8">
+        <button id="btnSubmitSVC" name="btnSubmitSVC" class="btn btn-success" onclick="showhide('Service-Forms-Main');showhide('Submit_Svc');showhide('main-content');saveServices();showRECPT();">Submit</button>
+        <!--- <button id="btnCancel-submit" name="btnCancel-submit" class="btn btn-danger" onClick="">Cancel</button> --->
+           <button id="btnCancel-submit" name="btnCancel-submit" class="btn btn-danger" onClick="resetScheduledReports ();cancelServices();showhide('Service-Forms-Main');showhide('Submit_Svc');showhide('main-content');">Cancel</button>
+      </div>
+    </div>
+
+         <!--Reciept Modal -->
+          <div class="modal fade" id="RECPT_Modal" tabindex="-1" role="dialog" aria-labelledby="RECPT_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!---<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="showhide('main-content');">X</button>--->
+                  <h4 class="modal-title">Reciept Of Services</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <table id="RECPT_DataTable" border="1">
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer"><!---Modal Footer Content here --->
+                 <!--- <button type="button" class="btn btn-default" data-dismiss="modal" id="RECPT_close" onclick="showhide('main-content');" >Close</button> --->
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="RECPT_ok" onclick="emptyRECPTjson();resetRECPThtml();" >OK</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+
+
+
+
+
+<!---<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="/common/scripts/jquery1.8.3.js"></script>--->
+<script src="js/dw_request_form.js"></script>
+<script src="js/dw_request_form_validation.js"></script>
+<script src="js/dw_def_reports.js"></script>
+<script src="js/dw_sched_reports_add.js"></script>
+<script src="js/dw_job_save_close.js"></script>
+<script src="js/dw_job_title_show.js"></script>
+<script src="js/dw_show_recpt.js"></script>
+<script src="js/dw_service_save_close.js"></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+/*
+NOTES:
+-----------------------------------------------
+This style-sheet is for the "letterhead" above the datatables and forms;
+if there is a strange format, check here first as several classes/names are
+repeated from bootstrap.css.
+
+------------------------------------------------
+
+Changes:
+------------------------------------------------
+
+* Cleaned; sorted; optimized by cssclean for CSS ver 2.1.0 -6-12-14 -AS
+
+* Removed all non-used styles after run Chrome audit on admin index.cfm
+(orig line count was 4.5k - new line count after clean is 242 -6-12-14 -AS)
+
+* Changed .navbar .nav>li>a
+changed from 10px 10px 20px to allow "Edit" forms to line up with list forms on the navbar -6-12-14 -AS
+ New Value: { padding:0px 10px 0px; }
+
+* Several changes to .container for better layout of letterhead section and how it interacted with lower sections -6-12-14 -AS
+-orig:
+    .container {
+    position:relative;
+    width:100%;
+    margin:20px auto;
+    padding:0;
+    }
+-new:
+    .container {
+    margin:20px auto;
+    padding:0;
+    position:relative;
+    width:980px;
+    }
+
+*/
+
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,
+pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,
+strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,
+footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+border:0;
+font:inherit;
+font-size:100%;
+margin:0;
+padding:0;
+vertical-align:baseline;
+}
+
+.margin-section {
+margin:0 0 0 20px;
+}
+
+.page-content {
+background-color:#fff;
+float:left;
+margin:11px 0;
+}
+
+body {
+background-color:#fff;
+color:#333;
+font:14px/21px 'PT Sans',sans-serif;
+font-size:13px;
+height:100%;
+line-height:18px;
+margin:80px 0 0;
+}
+
+.navbar-inverse,.navbar-inner {
+background-color:#222!important;
+}
+
+.navbar-inner {
+background-color:#222!important;
+background-image:linear-gradient(top,#333,#222);
+background-repeat:repeat-x;
+padding-left:20px;
+padding-right:20px;
+}
+
+h1 {
+font-size:30px;
+line-height:36px;
+}
+
+.nav li.selected {
+border-bottom:2px solid #488ac7;
+}
+
+.homepage .page-content .five ul {
+list-style:none;
+margin:20px 0 0;
+}
+
+.homepage .page-content .five ul li {
+font-size:18px;
+line-height:42px;
+}
+
+.homepage .page-content .five ul li a {
+color:#036;
+}
+
+img {
+border:0;
+height:auto;
+max-width:100%;
+vertical-align:middle;
+}
+
+a {
+color:#08c;
+text-decoration:none;
+}
+
+a:hover {
+color:#005580;
+text-decoration:underline;
+}
+
+p {
+font-family:'PT Sans',sans-serif;
+font-size:14px;
+line-height:18px;
+margin:0 0 9px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+color:inherit;
+font-family:'PT Sans',sans-serif;
+font-weight:700;
+margin:0;
+}
+
+ul,ol {
+margin:0 0 9px 25px;
+padding:0;
+}
+
+ul {
+list-style:disc;
+}
+
+form {
+margin:0 0 18px;
+}
+
+#main-content {
+    display: block;
+}
+#Service-Forms-Main{
+}
+
+
+
+.nav {
+list-style:none;
+margin-bottom:18px;
+margin-left:0;
+}
+
+.nav>li>a:hover {
+background-color:#eee;
+text-decoration:none;
+}
+
+.navbar {
+background-color:#222!important;
+color:#999;
+margin-bottom:18px;
+overflow:visible;
+position:relative;
+z-index:2;
+}
+
+.navbar .container {
+width:100%;
+height:15px
+}
+
+.navbar-fixed-top,.navbar-fixed-bottom {
+left:0;
+margin-bottom:0;
+position:fixed;
+right:0;
+z-index:1030;
+}
+
+.navbar-fixed-top .navbar-inner,.navbar-fixed-bottom .navbar-inner {
+padding-left:0;
+padding-right:0;
+}
+
+.navbar-fixed-top {
+top:0;
+}
+
+.navbar .nav {
+display:block;
+float:left;
+left:0;
+margin:0 10px 0 20px;
+position:relative;
+}
+
+.navbar .nav>li {
+display:block;
+float:left;
+}
+
+.navbar .nav>li>a {
+color:#999;
+float:none;
+line-height:19px;
+/*changed from 10px 10px 20px to allow "Edit" forms to line up with list forms on the navbar -6-12-14 -AS   */
+padding:0px 10px 0px;
+text-decoration:none;
+}
+
+.navbar .nav>li>a:hover {
+background-color:transparent;
+color:#fff;
+text-decoration:none;
+}
+
+/* Several changes to .container -see "Changes" section at top -6-12-14 -AS */
+.container {
+margin:20px auto;
+padding:0;
+position:relative;
+width:980px;
+
+}
+
+
+
+.container .column,.container .columns {
+display:inline;
+float:left;
+}
+
+.container .five.columns {
+width:280px;
+}
+
+.container:after {
+clear:both;
+content:"\0020";
+display:block;
+height:0;
+visibility:hidden;
+}
+
+.container-small, .container-large {
+    max-width: 100%;
+}
+
+.navbar .navbar-inner .container {
+background-color:#222!important;
+margin:10px auto;
+}
+
+
+html,small {
+font-size:100%;
+}
+
+a:hover,a:active,.dropdown-toggle:active,.open .dropdown-toggle,.btn-group .dropdown-toggle:active,.btn-group.open .dropdown-toggle {
+outline:0;
+}
+
+.span12,.container .sixteen.columns {
+width:940px;
+}
+
+h4,h5,h6,li,dt,dd {
+line-height:18px;
+}
+
+.modal-dialog {
+
+}
+
+@media screen and (min-width: 768px) {
+
+	#myModal1 .modal-dialog  {width:900px;}
+
+}
+
+legend{
+    font-size: large;
+}
+
+
+legend.Service-Section-Border{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+
+
+##SCHDRPT_Form textarea{
+
+}
+
+
+#USERACC_Form{
+    background: #D8E6FF;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+}
+
+#SCHDRPT_Form{
+    background: #B2CCFF;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+
+}
+
+#DASHACC_Form{
+    background: #D8E6FF;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+}
+
+#USAGREPT_Form{
+    background: #B2CCFF;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+}
+
