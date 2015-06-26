@@ -422,8 +422,24 @@ Optional third argument in each  LatLng  point ( altitude ) represents point int
 <script type='text/javascript'>
 
 /*var tilesUrl = 'http://10.0.0.9:8888/v2/MRC-base/{z}/{x}/{y}.png';*/
-var tilesUrl = 'https://a.tiles.mapbox.com/v4/asheppardwork.a2716a96/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXNoZXBwYXJkd29yayIsImEiOiI2ZDM2YWNhMzUwYzMyMzQ1Y2FhZDcwMDllOWM3YWVjZCJ9.TQkYudIQ6DHB0MN4UgN56g';
-tilesLayer = new L.TileLayer(tilesUrl);
+/*var tilesUrl = 'https://a.tiles.mapbox.com/v4/asheppardwork.a2716a96/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXNoZXBwYXJkd29yayIsImEiOiI2ZDM2YWNhMzUwYzMyMzQ1Y2FhZDcwMDllOWM3YWVjZCJ9.TQkYudIQ6DHB0MN4UgN56g';*/
+
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiYXNoZXBwYXJkd29yayIsImEiOiI2ZDM2YWNhMzUwYzMyMzQ1Y2FhZDcwMDllOWM3YWVjZCJ9.TQkYudIQ6DHB0MN4UgN56g';
+
+
+var mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v4/asheppardwork.a2716a96/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+    attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+});
+
+
+
+
+
+
+
+
+/*tilesLayer = new L.TileLayer(tilesUrl);*/
 
 
 
@@ -435,7 +451,7 @@ var map = L.map('map', {
                 maxZoom: 9,
     })
     .setView([39.3343, -97.4268], 5);
-    map.addLayer(tilesLayer);
+    map.addLayer(mapboxTiles);
 
 /* old scripts  start */
 
