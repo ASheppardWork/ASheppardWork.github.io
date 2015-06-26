@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Multiple sliders</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+<script>
+
+$(document).ready(function() {
+  $( ".slider-vertical" ).each(function(){
+
+      $this = $(this);
+
+      $(".slider",$this).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      values: [60],
+      slide: function( event, ui ) {
+        $(this).parent().find(".amount").html(  ui.values[0] );
+
+          console.log($("a.active").parent('id') );
+         /* console.log( $(".slider").parent('id') );  */
+          console.log(ui.values[0]);
+
+      }
+     });
+    $( "#amount" ).html( $( ".slider" ).slider( "values",0 ) );
+
+  });
+
+});
+
+
+</script>
+
+</head>
+<body>
+
+<div id="rParent" class="slider-vertical">
+      <b>Radius:</b>
+      <span id="radius" class="amount">0</span>
+      <div id="rSlider" class="slider"></div>
+ </div>
+
+<div id="iParent" class="slider-vertical">
+      <b>Intensity:</b>
+      <span id="intensity" class="amount">0</span>
+      <div id="iSlider" class="slider"></div>
+ </div>
+
+<div id="oParent" class="slider-vertical">
+      <b>Opacity:</b>
+      <span id="opacity" class="amount">0</span>
+      <div id="oSlider" class="slider"></div>
+ </div>
+
+
+
+
+
+
+</body>
+</html>

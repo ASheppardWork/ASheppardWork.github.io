@@ -1,0 +1,48 @@
+.ui-state-default{
+    border:#d3d3d3;
+    border-top-color: rgb(211, 211, 211);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(211, 211, 211);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(211, 211, 211);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(211, 211, 211);
+    border-left-style: solid;
+    border-left-width: 1px;
+    background: #e6e6e6 url("http://code.jquery.com/ui/1.11.1/themes/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
+    background-image: url(http://code.jquery.com/ui/1.11.1/themes/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png);
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-size: initial;
+    background-repeat-x: repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(230, 230, 230);
+    font-weight: normal;
+    color: #555555;
+}
+.ui-slider {
+position: relative;
+z-index: 1000;
+left: 100px;
+text-align: left;
+}
+.ui-slider-vertical {
+left: 100px;
+z-index: 1000;
+width: .8em;
+height: 100px;
+}
+.ui-widget-content {
+left: 100px;
+z-index: 1000;
+border: 1px solid #aaaaaa;
+background: #ffffff url("http://code.jquery.com/ui/1.11.1/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
+color: #222222;
+}
+

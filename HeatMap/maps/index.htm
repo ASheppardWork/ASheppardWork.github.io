@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+<head>
+	<meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!---
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+	<script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+    --->
+
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.0/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.0/mapbox.css' rel='stylesheet' />
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="js/jquery.dropdown.js"></script>
+
+    <!--- heatmap buttons --->
+    <script src="js/heatButtons.js"></script>
+
+
+    <!--- Bootstrap --->
+	<script src="js/bootstrap.min.js"></script>
+
+    <!--- heatmap stuff source: MUST HAVE LATEST OR HEATMAP MAY MOVE ON MAP MOVE --->
+    <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+
+   <!--- slider styles --->
+   <link type="text/css" rel="stylesheet" href="css/slide-heat-styles.css"/>
+
+	<style>
+	body { margin:0; padding:0; }
+	html, body { height: 100%; }
+	#map { position:absolute; top:0; bottom:0; width:100%; height: 100%;}
+	</style>
+
+    <!--- jQuery slider script --->
+
+
+    <script>
+
+            /* adjust intesity, radius, blur based on zoom-level; it should be more intense at higher zoom levels */
+            /* maxZoom: the lower the number the more intense (gives the zoom level to be the maximum intensity */
+            /* radius: the radius of each point; the more they overlap the more intense the color */
+            /* blur: the amount of blurring to each point to allow for more overlap; the larger the more blur */
+
+    $(document).ready(function() {
+
+
+      $( ".slider-vertical" ).each(function(){
+
+          $this = $(this);
+
+          $(".slider",$this).slider({
+          orientation: "horizontal",
+          range: "min",
+          min: 0,
+          max: 100,
+          values: [60],
+          slide: function( event, ui ) {
+            $(this).parent().find(".amount").html(  ui.values[0] );
+              var testID = $(this).attr('id')
+
+              var dataSourceCmb = document.getElementById("dataSourceCmb").value
+
+
+              /*slide controls for radius  (range 0.55-50.55) */
+              if( testID == 'rSlider' ) {
+              var rHandle = ui.values[0]
+              if( dataSourceCmb === 'Permits' ){
+              PermitHeat.setOptions({radius:(50-(rHandle/2))+.55});
+              }
+              else if( dataSourceCmb === 'Rigs' ){
+              RigHeat.setOptions({radius:(50-(rHandle/2))+.55});
+              }
+              else if( dataSourceCmb === 'Branches' ){
+              BranchHeat.setOptions({radius:(50-(rHandle/2))+.55});
+              }
+              /*console.log( (50-(rHandle/2))+.55 );*/
+              };
+
+              /*slide controls for maxZoom/aka Intensity (range 4-24) */
+              if( testID == 'iSlider' ) {
+              var iHandle = ui.values[0]
+              if( dataSourceCmb === 'Permits' ){
+              PermitHeat.setOptions({maxZoom:(20-(iHandle/5))+4});
+              }
+              else if( dataSourceCmb === 'Rigs' ){
+              RigHeat.setOptions({maxZoom:(20-(iHandle/5))+4});
+              }
+              else if( dataSourceCmb === 'Branches' ){
+              BranchHeat.setOptions({maxZoom:(20-(iHandle/5))+4});
+              }
+              /*console.log( (20-(iHandle/5))+4 );*/
+              };
+
+            /*slide controls for blur*/
+              if( testID == 'bSlider' ) {
+              var bHandle = ui.values[0]
+              if( dataSourceCmb === 'Permits' ){
+              PermitHeat.setOptions({blur:(50-(bHandle/2))+.55});
+              }
+              else if( dataSourceCmb === 'Rigs' ){
+              RigHeat.setOptions({blur:(50-(bHandle/2))+.55});
+              }
+              else if( dataSourceCmb === 'Branches' ){
+              BranchHeat.setOptions({blur:(50-(bHandle/2))+.55});
+              }
+              /*console.log( (50-(bHandle/2))+.55 );*/
+              };
+
+
+
+              /*slide controls for opacity - currently on canvas object*/
+              if( testID == 'oSlider' ) {
+
+              var oHandle = ui.values[0]
+              var opacityNum = (oHandle/100)
+                  if( dataSourceCmb === 'Permits' ){
+                  document.getElementById("pCanvas").style.opacity=opacityNum;
+                      /*console.log(document.getElementById("pCanvas").style.opacity);*/
+                  }
+                  else if( dataSourceCmb === 'Rigs' ){
+                  document.getElementById("rCanvas").style.opacity=opacityNum;
+                  }
+                  else if( dataSourceCmb === 'Branches' ){
+                  document.getElementById("bCanvas").style.opacity=opacityNum;
+                  }
+              };
+
+
+             /*slide controls for hue*/
+              if( testID == 'hSlider' ) {
+
+              $(this).slider({min: -180, max: 180});
+
+              var hHandle = ui.values[0]
+              var hueScale = (hHandle);
+              var hueStop1 = changeHue("#FF00FF", hueScale);
+              var hueStop2 = changeHue("#00FFFF", hueScale);
+              var hueStop3 = changeHue("#00FF00", hueScale);
+              var hueStop4 = changeHue("#FFFF00", hueScale);
+              var hueStop5 = changeHue("#FF0000", hueScale);
+
+              if( dataSourceCmb === 'Permits'  ){
+              PermitHeat.setOptions({gradient: {0.2: hueStop1,.4: hueStop2 , 0.6: hueStop3, 0.8: hueStop4, 1.0: hueStop5} });
+              }
+              else if(  dataSourceCmb === 'Rigs' ){
+              RigHeat.setOptions({gradient: {0.2: hueStop1,.4: hueStop2 , 0.6: hueStop3, 0.8: hueStop4, 1.0: hueStop5} });
+              }
+              else if(  dataSourceCmb === 'Branches' ){
+              BranchHeat.setOptions({gradient: {0.2: hueStop1,.4: hueStop2 , 0.6: hueStop3, 0.8: hueStop4, 1.0: hueStop5} });
+              }
+              /* console.log( hueStop1+','+hueStop2+','+hueStop3+','+hueStop4+','+hueStop5 );*/
+              };
+
+
+
+              /*PermitHeat.setOptions({radius:((50-(rHandle/2))+.55),maxZoom:((20-(iHandle/5))+4),blur:((50-(bHandle/2))+.55),gradient: {0.2: hueStop1,.4: hueStop2 , 0.6: hueStop3, 0.8: hueStop4, 1.0: hueStop5} });*/
+
+             /* (PermitsPoints,{maxZoom:13,radius:10,blur:5,gradient: {0.2: "#FF00FF",.4: "#00FFFF" , 0.6: "#00FF00", 0.8: "#FFFF00", 1.0: "#FF0000"} })*/
+             /* console.log( PermitHeat+" "+"Radius: "+rHandle+" Intensity: "+iHandle+" Blur: "+bHandle+" Opacity: "+oHandle+" Hue: "+hHandle ); */
+              /*console.log( $(this).attr('id') );*/
+              /*console.log(ui.values[0]);  */
+
+              /*PermitHeat.setOptions({maxZoom:20-(handle.offsetTop / 11)});*/
+
+
+
+          }
+         });
+
+        $( "#amount" ).html( $( ".slider" ).slider( "values",0 ) );
+
+      });
+
+    });
+
+
+
+    </script>
+
+
+
+<script>
+// Changes the RGB/HEX temporarily to a HSL-Value, modifies that value
+// and changes it back to RGB/HEX.
+
+function changeHue(rgb, degree) {
+    var hsl = rgbToHSL(rgb);
+    hsl.h += degree;
+    if (hsl.h > 360) {
+        hsl.h -= 360;
+    }
+    else if (hsl.h < 0) {
+        hsl.h += 360;
+    }
+    return hslToRGB(hsl);
+}
+
+// exepcts a string and returns an object
+function rgbToHSL(rgb) {
+    // strip the leading # if it's there
+    rgb = rgb.replace(/^\s*#|\s*$/g, '');
+
+    // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+    if(rgb.length == 3){
+        rgb = rgb.replace(/(.)/g, '$1$1');
+    }
+
+    var r = parseInt(rgb.substr(0, 2), 16) / 255,
+        g = parseInt(rgb.substr(2, 2), 16) / 255,
+        b = parseInt(rgb.substr(4, 2), 16) / 255,
+        cMax = Math.max(r, g, b),
+        cMin = Math.min(r, g, b),
+        delta = cMax - cMin,
+        l = (cMax + cMin) / 2,
+        h = 0,
+        s = 0;
+
+    if (delta == 0) {
+        h = 0;
+    }
+    else if (cMax == r) {
+        h = 60 * (((g - b) / delta) % 6);
+    }
+    else if (cMax == g) {
+        h = 60 * (((b - r) / delta) + 2);
+    }
+    else {
+        h = 60 * (((r - g) / delta) + 4);
+    }
+
+    if (delta == 0) {
+        s = 0;
+    }
+    else {
+        s = (delta/(1-Math.abs(2*l - 1)))
+    }
+
+    return {
+        h: h,
+        s: s,
+        l: l
+    }
+}
+
+// expects an object and returns a string
+function hslToRGB(hsl) {
+    var h = hsl.h,
+        s = hsl.s,
+        l = hsl.l,
+        c = (1 - Math.abs(2*l - 1)) * s,
+        x = c * ( 1 - Math.abs((h / 60 ) % 2 - 1 )),
+        m = l - c/ 2,
+        r, g, b;
+
+    if (h < 60) {
+        r = c;
+        g = x;
+        b = 0;
+    }
+    else if (h < 120) {
+        r = x;
+        g = c;
+        b = 0;
+    }
+    else if (h < 180) {
+        r = 0;
+        g = c;
+        b = x;
+    }
+    else if (h < 240) {
+        r = 0;
+        g = x;
+        b = c;
+    }
+    else if (h < 300) {
+        r = x;
+        g = 0;
+        b = c;
+    }
+    else {
+        r = c;
+        g = 0;
+        b = x;
+    }
+
+    r = normalize_rgb_value(r, m);
+    g = normalize_rgb_value(g, m);
+    b = normalize_rgb_value(b, m);
+
+    return rgbToHex(r,g,b);
+}
+
+function normalize_rgb_value(color, m) {
+    color = Math.floor((color + m) * 255);
+    if (color < 0) {
+        color = 0;
+    }
+    return color;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+
+
+</script>
+
+
+</head>
+
+<!---- notes on L.heatLayer options
+    L.heatLayer(latlngs, options)
+
+Constructs a heatmap layer given an array of  LatLng  points and an object with the following options:
+ • maxZoom - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals  maxZoom  of the map by default
+ • max - maximum point intensity,  1.0  by default
+ • radius - radius of each "point" of the heatmap,  25  by default
+ • blur - amount of blur,  15  by default
+ • gradient - color gradient config, e.g.  {0.4: 'blue', 0.65: 'lime', 1: 'red'}
+
+Optional third argument in each  LatLng  point ( altitude ) represents point intensity. (accessed via "max")
+
+     --->
+
+
+
+<body>
+
+<div id="sliderControls" class="leaflet-control">
+    <div id="rParent" class="slider-vertical">
+          <b style="margin-left:100px">Radius:</b>
+          <span id="radius" class="amount">0</span>
+          <div id="rSlider" class="slider"></div>
+     </div>
+
+    <div id="iParent" class="slider-vertical">
+          <b style="margin-left:100px">Intensity:</b>
+          <span id="intensity" class="amount">0</span>
+          <div id="iSlider" class="slider"></div>
+     </div>
+
+    <div id="bParent" class="slider-vertical">
+          <b style="margin-left:100px">Blur:</b>
+          <span id="blur" class="amount">0</span>
+          <div id="bSlider" class="slider"></div>
+     </div>
+
+    <div id="oParent" class="slider-vertical">
+          <b style="margin-left:100px">Opacity:</b>
+          <span id="opacity" class="amount">0</span>
+          <div id="oSlider" class="slider"></div>
+     </div>
+
+    <div id="hParent" class="slider-vertical">
+          <b style="margin-left:100px">Hue:</b>
+          <span id="hue" class="amount">0</span>
+          <div id="hSlider" class="slider"></div>
+     </div>
+</div>
+
+
+
+<div id="datasourceContent" class="leaflet-control">
+    <div>
+        <h1 class="header">Data Sets</h1>
+        <br>
+        <div class="ui-widget">
+            <label>Choose a Dataset:</label>
+            <select id="dataSourceCmb" >
+                <option value="">Select one...</option>
+                <option value="Permits">Permits</option>
+                <option value="Rigs">Rigs</option>
+                <option value="Branches">Branches</option>
+                </select>
+
+        </div>
+        <div class="btn-group">
+            <button id="addDataBtn" type="button" onClick="addDataSet()">
+                <span></span>Add Dataset to Map</button>
+
+            <button id="removeDataBtn" type="button" onClick="removeDataSet()">
+                <span></span>Remove Dataset from Map</button>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+
+ <div id="map" class="light"></div>
+
+
+<!-- heatmap data. -->
+<script src='js/initHeat.js'></script>
+<script src='js/Permits.js'></script>
+<script src='js/Rigs.js'></script>
+<script src='js/Branches.js'></script>
+
+
+<!-- Add single map -->
+<script type='text/javascript'>
+
+/*var tilesUrl = 'http://10.0.0.9:8888/v2/MRC-base/{z}/{x}/{y}.png';*/
+var tilesUrl = 'https://a.tiles.mapbox.com/v4/asheppardwork.a2716a96/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXNoZXBwYXJkd29yayIsImEiOiI2ZDM2YWNhMzUwYzMyMzQ1Y2FhZDcwMDllOWM3YWVjZCJ9.TQkYudIQ6DHB0MN4UgN56g';
+tilesLayer = new L.TileLayer(tilesUrl);
+
+
+
+
+/*<!--- default start view .setView([39.3343, -97.4268], 5); --->*/
+
+var map = L.map('map', {
+                    minZoom: 4,
+                maxZoom: 9,
+    })
+    .setView([39.3343, -97.4268], 5);
+    map.addLayer(tilesLayer);
+
+/* old scripts  start */
+
+/* Permits START----------------------------------------------------------->>> */
+
+/* Init heat map
+var PermitHeat = L.heatLayer(PermitsPoints,{maxZoom:13,radius:10,blur:5,gradient: {0.2: "#FF00FF",.4: "#00FFFF" , 0.6: "#00FF00", 0.8: "#FFFF00", 1.0: "#FF0000"} })
+.addTo(map), draw= true; */
+
+
+/* Permits END----------------------------------------------------------->>> */
+
+
+/* RIGS START----------------------------------------------------------->>> */
+/* Init heat map
+
+var RigHeat = L.heatLayer(RigsPoints,{maxZoom:14,radius:20,blur:15,gradient: {0.2: '#FF00FF',.4: '#00FFFF' , 0.6: '#00FF00', 0.8: '#FFFF00', 1.0: '#FF0000'} })
+.addTo(map), draw = true; */
+
+
+
+/* RIGS END----------------------------------------------------------->>> */
+
+
+/* BRANCHES START----------------------------------------------------------->>> */
+/* Init heat map */
+//var BranchHeat = L.heatLayer(BranchesPoints,{maxZoom:8,radius:9,blur:5,gradient: {0.4: '#0000B8',.65: '#0000A3' , 0.85: '#00008F', 1: '#00007A'} }).addTo(map),
+/*    draw = true; */
+
+/* BRANCHES END----------------------------------------------------------->>> */
+
+/* old scripts  end */
+
+</script>
+
+
+
+</body>
+</html>
