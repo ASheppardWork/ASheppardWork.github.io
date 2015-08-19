@@ -12,3 +12,5 @@
   border-left:1px solid #ffffff;
 }
 #ticker dd.last { border-bottom:1px solid #ffffff;}
+
+#ticker div { margin-top:0; }
