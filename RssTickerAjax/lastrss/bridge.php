@@ -11,7 +11,7 @@ Created: Feb 9th, 2006. Updated: Feb 9th, 2006
 header('Content-type: text/xml');
 
 // include lastRSS
-include "lastRSS.php"; //path to lastRSS.php on your server from this script ("bridge.php")
+include "https://orionhub.org/file/ASheppardWork-OrionContent/ASheppardWork.github.io/RssTickerAjax/lastrss/lastRSS.php"; //path to lastRSS.php on your server from this script ("bridge.php")
 
 // Create lastRSS object
 $rss = new lastRSS;
@@ -20,11 +20,11 @@ $rss->date_format = 'M d, Y g:i:s A'; //date format of RSS item. See PHP date() 
 
 // List of RSS URLs
 $rsslist=array(
-"CNN" => "http://rss.cnn.com/rss/cnn_topstories.rss",
-"BBC" => "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml",
-"news.com" => "http://news.com.com/2547-1_3-0-5.xml",
-"slashdot" => "http://rss.slashdot.org/Slashdot/slashdot",
-"dynamicdrive" => "http://www.dynamicdrive.com/export.php?type=new"
+"CNN" => "https://rss.cnn.com/rss/cnn_topstories.rss",
+"BBC" => "https://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml",
+"news.com" => "https://news.com.com/2547-1_3-0-5.xml",
+"slashdot" => "https://rss.slashdot.org/Slashdot/slashdot",
+"dynamicdrive" => "https://www.dynamicdrive.com/export.php?type=new"
 );
 
 ////Beginners don't need to configure past here////////////////////
