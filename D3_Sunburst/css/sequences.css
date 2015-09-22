@@ -1,0 +1,77 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  //*font-weight: 400;*/
+  font-weight: 600;
+  fill: #fff;
+  background-color: #8A9293;
+  width: 960px;
+  height: 700px;
+  margin-top: 10px;
+}
+
+#main {
+  float: left;
+  width: 790px;
+}
+
+#sidebar {
+  float: right;
+  width: 100px;
+}
+
+#sequence {
+  width: 850px;
+  height: 70px;
+
+  
+}
+
+#legend {
+  padding: 10px 0 0 3px;
+}
+
+#legendSubTitle {
+   /*height: 700px; */
+   width: 210px;
+   text-align: center;
+   z-index: -1;
+   color: #fff;
+   
+}
+
+#sequence text, #legend text {
+  font-weight: 600;
+  fill: #fff;
+}
+
+#chart {
+  position: relative;
+}
+
+#chart path {
+  stroke: #8A9293;
+
+
+}
+
+#explanation {
+  /* height: 700px; */
+   width: 210px;
+   text-align: center;
+   z-index: -1000;
+   color: #fff;
+}
+
+#logo {
+ /*  height: 700px; */
+   width: 210px;
+   text-align: center;
+   z-index: -1;
+   color: #666;
+}
+
+#percentage {
+  font-size: 1.5em;
+}
+

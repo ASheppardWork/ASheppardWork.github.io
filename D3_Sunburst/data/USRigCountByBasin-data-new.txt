@@ -1,0 +1,606 @@
+{
+    "name": "root",
+    "children": [
+        {
+            "name": "2013",
+            "children": [
+                {
+                    "name": "Gas",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 4
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 22
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 12
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 18
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 37
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 11
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 9
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 38
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 89
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 14
+                        },
+                        {
+                            "name": "Others",
+                            "size": 124
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 8
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 15
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Misc",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 0
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 0
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 1
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 0
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 0
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Others",
+                            "size": 5
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 0
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Oil",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 14
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 9
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 13
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 29
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 196
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 59
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 1
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 0
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 56
+                        },
+                        {
+                            "name": "Others",
+                            "size": 331
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 452
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 20
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 181
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "2014",
+            "children": [
+                {
+                    "name": "Gas",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 7
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 14
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 1
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 15
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 6
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 9
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 22
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 43
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 82
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 4
+                        },
+                        {
+                            "name": "Others",
+                            "size": 107
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 5
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 23
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Misc",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 0
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 0
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 0
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 0
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Others",
+                            "size": 1
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 0
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Oil",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 5
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 11
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 35
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 47
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 197
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 45
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 2
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 1
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 73
+                        },
+                        {
+                            "name": "Others",
+                            "size": 400
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 561
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 21
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 194
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "2015",
+            "children": [
+                {
+                    "name": "Gas",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 5
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 2
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 4
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 6
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 13
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 4
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 0
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 28
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 51
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Others",
+                            "size": 67
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 2
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 14
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Misc",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 0
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 0
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 0
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 0
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 0
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 0
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Others",
+                            "size": 0
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 0
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 0
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Oil",
+                    "children": [
+                        {
+                            "name": "Ardmore Woodford",
+                            "size": 5
+                        },
+                        {
+                            "name": "Arkoma Woodford",
+                            "size": 2
+                        },
+                        {
+                            "name": "Barnett",
+                            "size": 4
+                        },
+                        {
+                            "name": "Cana Woodford",
+                            "size": 34
+                        },
+                        {
+                            "name": "DJ-Niobrara",
+                            "size": 23
+                        },
+                        {
+                            "name": "Eagle Ford",
+                            "size": 77
+                        },
+                        {
+                            "name": "Fayetteville",
+                            "size": 0
+                        },
+                        {
+                            "name": "Granite Wash",
+                            "size": 15
+                        },
+                        {
+                            "name": "Haynesville",
+                            "size": 1
+                        },
+                        {
+                            "name": "Marcellus",
+                            "size": 0
+                        },
+                        {
+                            "name": "Mississippian",
+                            "size": 19
+                        },
+                        {
+                            "name": "Others",
+                            "size": 148
+                        },
+                        {
+                            "name": "Permian",
+                            "size": 248
+                        },
+                        {
+                            "name": "Utica",
+                            "size": 5
+                        },
+                        {
+                            "name": "Williston",
+                            "size": 71
+                        }
+                    ]
+                }
+            ]
+        }
+        
+    ]
+}
